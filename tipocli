@@ -1,0 +1,45 @@
+<script type="text/javascript">
+$(document).ready(function(){
+   alert("Este campo debe tener mas de 5 caracteres."); 
+   $("#formulario").validate({
+          event: "blur",
+	      rules:{
+           'tipocli[descripcion]':{
+            required:true,
+            minlength:5,
+			maxlength: 120			
+          },
+		 },	  
+	  messages:{
+          'tipocli[descripcion]':{
+            required:"Por favor, ingresa tu nombre de usuario.",
+            minlength:"Este campo debe ser de al menos 5 caracteres o menos.",
+			maxlength: "Debe tener maximo 120 caracteres."
+         },
+       }	
+      });
+	 });
+	 
+</script> 
+
+<?php
+$titulo = 'Tipos de Clientes de Salud Lara';
+$subtitulo = 'Agregando'; 
+?>
+<?php  View::template('sladmin'); ?>
+<div class="content">
+<?php View::content(); ?>
+
+<br>
+<div id"formulario">
+<label>Descripcion del Tipo
+<?php echo Form::text('tipocli.descripcion'); ?></label>
+</div>
+
+<?php echo Form::hidden('tipocli.estatus', NULL, 1)?>
+<?php echo Form::hidden('tipocli.empresa_id', NULL, 1)?>
+<?php echo Form::hidden('tipocli.sucursal_id', NULL, 1)?>
+
+<?php echo Form::submit('Agregar'); ?>
+<?php echo Form::close() ?>
+</div>
